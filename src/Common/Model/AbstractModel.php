@@ -1,4 +1,6 @@
-<?php /** @noinspection ALL */
+<?php
+
+/** @noinspection ALL */
 
 namespace AutoCode\Core\Common\Model;
 
@@ -28,18 +30,28 @@ abstract class AbstractModel extends stdClass implements ModelInterface
         'date_update' => Date::class,
         'date_delete' => Date::class,
     ];
-    public Uuid|string|null $id = null;
-    public Date|string|null $date_create = null;
-    public Date|string|null $date_update = null;
-    public Date|string|null $date_delete = null;
-    protected array $load = [];
-    protected array $hidden = [];
-    protected string $connection = 'default';
-    private array $attributes = [];
-    private string|null $action = null;
-    private CollectionInterface|null $children = null;
 
-    final public function find(int|array|string|null $data = null, GetQueryFindEnum $get = GetQueryFindEnum::ONE): self|null
+    public Uuid|string|null $id = null;
+
+    public Date|string|null $date_create = null;
+
+    public Date|string|null $date_update = null;
+
+    public Date|string|null $date_delete = null;
+
+    protected array $load = [];
+
+    protected array $hidden = [];
+
+    protected string $connection = 'default';
+
+    private array $attributes = [];
+
+    private ?string $action = null;
+
+    private ?CollectionInterface $children = null;
+
+    final public function find(int|array|string $data = null, GetQueryFindEnum $get = GetQueryFindEnum::ONE): ?self
     {
         $queryBuilder = (new SelectModel())->table($this->getTableName());
 
@@ -69,20 +81,20 @@ abstract class AbstractModel extends stdClass implements ModelInterface
         return mb_strtolower($this->tableName ?? preg_replace('~^(.+)/(\w+)~', '$2', str_replace('\\', '/', static::class)));
     }
 
-    final public function load( $queryBuilder)
+    final public function load($queryBuilder)
     {
     }
 
-    public function getDbConnect(string|null $connectName = null): DataBase
+    public function getDbConnect(string $connectName = null): DataBase
     {
-            $connectName ?? $connectName = $this->connection;
+        $connectName ?? $connectName = $this->connection;
 
         return DataBase::getInstance($connectName);
     }
 
-    private function hiddenFields(self|null $model)
+    private function hiddenFields(?self $model)
     {
-        if (!$model) {
+        if (! $model) {
             return $model;
         }
 
@@ -138,9 +150,10 @@ abstract class AbstractModel extends stdClass implements ModelInterface
         $this->action = 'update';
         $this->date_update = new Date();
         $queryBuilder = (new UpdateModel())->table($this->getTableName())->set($this);
-        #$obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ONE}(PDO::FETCH_CLASS, static::class);
-        
-        return false;$obj?->unsetHidenFields($obj)?:false;
+        //$obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ONE}(PDO::FETCH_CLASS, static::class);
+
+        return false;
+        $obj?->unsetHidenFields($obj) ?: false;
     }
 
     final public function create(): ModelInterface|self|false
@@ -150,17 +163,18 @@ abstract class AbstractModel extends stdClass implements ModelInterface
         $this->date_update = new Date();
         $this->date_create = new Date();
         $queryBuilder = (new CreateModel())->table($this->getTableName())->set($this);
-        (string)$queryBuilder;
-        #$obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ALL}(PDO::FETCH_CLASS, static::class);
+        (string) $queryBuilder;
+        //$obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ALL}(PDO::FETCH_CLASS, static::class);
 
-        return false; $obj?->unsetHidenFields($obj)?:false;
+        return false;
+        $obj?->unsetHidenFields($obj) ?: false;
     }
 
     final public function sync(): bool
     {
         foreach ($this->children as $child) {
             if ($child instanceof ModelInterface) {
-                if (!$child->{$this->action}()) {
+                if (! $child->{$this->action}()) {
                     return false;
                 }
             }
@@ -208,10 +222,9 @@ abstract class AbstractModel extends stdClass implements ModelInterface
     {
         $data = [
             $this,
-            ...$this->attributes
+            ...$this->attributes,
         ];
 
         return json_encode($data, JSON_THROW_ON_ERROR);
     }
-
 }

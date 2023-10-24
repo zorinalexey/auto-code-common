@@ -7,6 +7,7 @@ use AutoCode\Core\Interfaces\CollectionInterface;
 final class Collection implements CollectionInterface
 {
     private int $position = 0;
+
     private array $collection = [];
 
     public function next(): mixed

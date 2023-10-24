@@ -8,5 +8,4 @@ namespace AutoCode\Core\Enums;
  */
 enum ChmodEnum: int
 {
-
 }

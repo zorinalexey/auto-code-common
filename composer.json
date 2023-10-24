@@ -17,6 +17,7 @@
   "require": {
     "php": ">=8.2",
     "free2one/php-accessor": "~0.4",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "laravel/pint": ">=v1.13.4"
   }
 }

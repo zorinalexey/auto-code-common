@@ -6,12 +6,12 @@ use DateTime;
 
 final class Date extends DateTime implements TypeInterface
 {
-    public function __construct(string|null $date = null)
+    public function __construct(string $date = null)
     {
         parent::__construct($date);
     }
 
-    public function __toString():string
+    public function __toString(): string
     {
         return $this->format('Y-m-d H:i:s');
     }

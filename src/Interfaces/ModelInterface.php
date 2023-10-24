@@ -1,4 +1,6 @@
-<?php /** @noinspection MissingParameterTypeDeclarationInspection */
+<?php
+
+/** @noinspection MissingParameterTypeDeclarationInspection */
 
 namespace AutoCode\Core\Interfaces;
 
@@ -11,7 +13,7 @@ interface ModelInterface
 
     public function delete(): bool;
 
-    public function find(array|string|int|null $data = null): self|null;
+    public function find(array|string|int $data = null): ?self;
 
     public function save(): self|false;
 
@@ -24,14 +26,14 @@ interface ModelInterface
     public function getDbConnect(): PDO;
 
     /**
-     * @param string $name
+     * @param  string  $name
      * @return self|null
      */
     public function __get($name): mixed;
 
     /**
-     * @param string $name
-     * @param array $arguments
+     * @param  string  $name
+     * @param  array  $arguments
      * @return self|null
      */
     public function __call($name, $arguments): mixed;
@@ -43,5 +45,4 @@ interface ModelInterface
     public function getFillable(): array;
 
     public function getHidden(): array;
-
 }

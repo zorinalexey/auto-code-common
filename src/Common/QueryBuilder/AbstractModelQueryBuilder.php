@@ -10,7 +10,8 @@ abstract class AbstractModelQueryBuilder implements QueryBuilderInterface
 {
     private static int $setParamCount = 0;
 
-    protected string|null $table = null;
+    protected ?string $table = null;
+
     protected array $binds = [];
 
     final public function table(string $table): SelectModel|DeleteModel|CreateModel|UpdateModel|self
@@ -20,15 +21,14 @@ abstract class AbstractModelQueryBuilder implements QueryBuilderInterface
         return $this;
     }
 
-
     final public function set(array|AbstractModel|ModelInterface $data): QueryBuilderInterface
     {
         self::$setParamCount++;
 
-        foreach ($data as $field => $value){
+        foreach ($data as $field => $value) {
             $count = count($this->binds);
-            if($value !== null && !is_bool($value)){
-                $value = (string)$value;
+            if ($value !== null && ! is_bool($value)) {
+                $value = (string) $value;
             }
             $bindName = ":param{$count}{$this->table}".self::$setParamCount;
             $this->binds[$field] = [$bindName => $value];
@@ -43,8 +43,8 @@ abstract class AbstractModelQueryBuilder implements QueryBuilderInterface
     {
         $binds = [];
 
-        foreach ($this->binds as $bind){
-            foreach ($bind as $bindName => $value){
+        foreach ($this->binds as $bind) {
+            foreach ($bind as $bindName => $value) {
                 $binds[$bindName] = $value;
             }
         }

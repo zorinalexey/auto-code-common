@@ -10,12 +10,14 @@ use PDOStatement;
 final class DataBase extends PDO
 {
     private static array $instance = [];
+
     protected array $connect = [];
-    private string|null $connectName = null;
+
+    private ?string $connectName = null;
 
     private function __construct(string $connectName)
     {
-        $conf = Config::getInstance('data_base')[$connectName]??[];
+        $conf = Config::getInstance('data_base')[$connectName] ?? [];
         $this->connectName = $connectName;
         $this->connect[$this->connectName] = parent::__construct(...$conf);
     }
@@ -27,7 +29,7 @@ final class DataBase extends PDO
 
     public function get(QueryBuilderInterface $query): PDOStatement
     {
-        $stmt = $this->connect[$this->connectName]->prepare((string)$query, PDO::FETCH_ASSOC);
+        $stmt = $this->connect[$this->connectName]->prepare((string) $query, PDO::FETCH_ASSOC);
         $stmt->execute($query->getBindParams());
 
         return $stmt;
@@ -37,6 +39,4 @@ final class DataBase extends PDO
     {
 
     }
-
-
 }

@@ -9,10 +9,10 @@ use AutoCode\Core\Interfaces\ModelInterface;
 
 trait RelationsTrait
 {
-    final protected function hasOne(ModelInterface|string $model, string|null $foreignKey = null, string $localKey = 'id'): ModelInterface|null
+    final protected function hasOne(ModelInterface|string $model, string $foreignKey = null, string $localKey = 'id'): ?ModelInterface
     {
-        if (!$foreignKey) {
-            $foreignKey = $this->getTableName() . '_id';
+        if (! $foreignKey) {
+            $foreignKey = $this->getTableName().'_id';
         }
 
         if (is_string($model) && class_exists($model)) {
@@ -24,10 +24,10 @@ trait RelationsTrait
         return $model->find([$foreignKey, $this->$foreignKey], GetQueryFindEnum::ONE);
     }
 
-    final protected function hasMany(ModelInterface|string $model, string|null $foreignKey = null, string $localKey = 'id'): CollectionInterface
+    final protected function hasMany(ModelInterface|string $model, string $foreignKey = null, string $localKey = 'id'): CollectionInterface
     {
-        if (!$foreignKey) {
-            $foreignKey = $this->getTableName() . '_id';
+        if (! $foreignKey) {
+            $foreignKey = $this->getTableName().'_id';
         }
 
         $collection = new Collection();

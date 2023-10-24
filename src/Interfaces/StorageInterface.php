@@ -8,7 +8,7 @@ use AutoCode\Core\Enums\FileTypeEnum;
 
 interface StorageInterface
 {
-    public static function init(string|null $path): self;
+    public static function init(?string $path): self;
 
     public function has(): bool;
 

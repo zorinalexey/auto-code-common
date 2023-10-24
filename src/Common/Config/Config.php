@@ -5,13 +5,14 @@ namespace AutoCode\Core\Common\Config;
 use AutoCode\Core\Interfaces\ConfigInterface;
 use AutoCode\Core\Interfaces\FileInterface;
 
-if(!defined('ROOT_PATH')){
+if (! defined('ROOT_PATH')) {
     define('ROOT_PATH', dirname(__FILE__, 4));
 }
 
 final class Config implements ConfigInterface
 {
     private static array $instance = [];
+
     /**
      * @var array|mixed
      */
@@ -29,7 +30,7 @@ final class Config implements ConfigInterface
         }
 
         self::$instance[$configName] = new self();
-        $file = self::$instance[$configName]->getConfigPath() . DIRECTORY_SEPARATOR . "{$configName}.php";
+        $file = self::$instance[$configName]->getConfigPath().DIRECTORY_SEPARATOR."{$configName}.php";
 
         if (is_file($file)) {
             self::$instance[$configName]->config = require $file;
@@ -40,7 +41,7 @@ final class Config implements ConfigInterface
 
     private function getConfigPath(): string
     {
-        return ROOT_PATH . DIRECTORY_SEPARATOR . 'config';
+        return ROOT_PATH.DIRECTORY_SEPARATOR.'config';
     }
 
     private function __clone()
@@ -63,6 +64,6 @@ final class Config implements ConfigInterface
 
     public function get(string $key, mixed $default = null): mixed
     {
-        return $this->config[$key]??$default;
+        return $this->config[$key] ?? $default;
     }
 }

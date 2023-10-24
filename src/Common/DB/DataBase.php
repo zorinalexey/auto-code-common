@@ -15,7 +15,7 @@ final class DataBase extends PDO
 
     private function __construct(string $connectName)
     {
-        $conf = Config::getInstance('data_base')[$connectName];
+        $conf = Config::getInstance('data_base')[$connectName]??[];
         $this->connectName = $connectName;
         $this->connect[$this->connectName] = parent::__construct(...$conf);
     }

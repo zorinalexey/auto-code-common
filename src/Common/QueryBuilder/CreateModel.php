@@ -4,16 +4,22 @@ namespace AutoCode\Utils\Common\QueryBuilder;
 
 use AutoCode\Utils\Interfaces\QueryBuilderInterface;
 
-class CreateModel implements QueryBuilderInterface
+final class CreateModel extends AbstractModelQueryBuilder
 {
-
-    public function table(string $table): SelectModel|DeleteModel|CreateModel|UpdateModel
+    public function __toString(): string
     {
-        // TODO: Implement table() method.
-    }
+        $str = "INSERT INTO {$this->table} SET (";
 
-    public function set(array $data): QueryBuilderInterface
-    {
-        // TODO: Implement set() method.
+        foreach (array_keys($this->binds) as $field){
+            $str .= "{$this->table}.{$field}, ";
+        }
+
+        $str = trim($str, ', ').') VALUES (';
+
+        foreach ($this->getBindParams() as $k => $v){
+            $str .= "{$k}, ";
+        }
+
+        return  trim($str, ', ').');';
     }
 }

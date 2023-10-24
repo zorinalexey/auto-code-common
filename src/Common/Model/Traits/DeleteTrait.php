@@ -3,6 +3,7 @@
 namespace AutoCode\Utils\Common\Model\Traits;
 
 use AutoCode\Utils\Common\QueryBuilder\DeleteModel;
+use AutoCode\Utils\Common\QueryBuilder\Types\Date;
 use AutoCode\Utils\Enums\DeleteDriverEnum;
 use DateTime;
 
@@ -26,7 +27,7 @@ trait DeleteTrait
 
     private function softDelete(): bool
     {
-        $this->date_delete = new DateTime();
+        $this->date_delete = new Date();
 
         return (bool)$this->update();
     }

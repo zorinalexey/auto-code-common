@@ -8,12 +8,13 @@ use AutoCode\Utils\Common\Model\Traits\DeleteTrait;
 use AutoCode\Utils\Common\Model\Traits\RelationsTrait;
 use AutoCode\Utils\Common\QueryBuilder\CreateModel;
 use AutoCode\Utils\Common\QueryBuilder\SelectModel;
+use AutoCode\Utils\Common\QueryBuilder\Types\Date;
+use AutoCode\Utils\Common\QueryBuilder\Types\TypeInterface;
+use AutoCode\Utils\Common\QueryBuilder\Types\Uuid;
 use AutoCode\Utils\Common\QueryBuilder\UpdateModel;
 use AutoCode\Utils\Enums\GetQueryFindEnum;
 use AutoCode\Utils\Interfaces\CollectionInterface;
 use AutoCode\Utils\Interfaces\ModelInterface;
-use AutoCode\Utils\Interfaces\QueryBuilderInterface;
-use DateTime;
 use PDO;
 use stdClass;
 
@@ -22,15 +23,15 @@ abstract class AbstractModel extends stdClass implements ModelInterface
     use DeleteTrait, RelationsTrait;
 
     private static array $mainFiellable = [
-        'id' => 'uuid',
-        'date_create' => DateTime::class,
-        'date_update' => DateTime::class,
-        'date_delete' => DateTime::class,
+        'id' => Uuid::class,
+        'date_create' => Date::class,
+        'date_update' => Date::class,
+        'date_delete' => Date::class,
     ];
-    public string|null $id = null;
-    public DateTime|string|null $date_create = null;
-    public DateTime|string|null $date_update = null;
-    public DateTime|string|null $date_delete = null;
+    public Uuid|string|null $id = null;
+    public Date|string|null $date_create = null;
+    public Date|string|null $date_update = null;
+    public Date|string|null $date_delete = null;
     protected array $load = [];
     protected array $hidden = [];
     protected string $connection = 'default';
@@ -65,16 +66,11 @@ abstract class AbstractModel extends stdClass implements ModelInterface
 
     final public function getTableName(): string
     {
-        return $this->tableName ?? basename(static::class);
+        return mb_strtolower($this->tableName ?? preg_replace('~^(.+)/(\w+)~', '$2', str_replace('\\', '/', static::class)));
     }
 
-    final public function load(QueryBuilderInterface $queryBuilder): QueryBuilderInterface
+    final public function load( $queryBuilder)
     {
-        foreach ($this->load as $attribute) {
-            $queryBuilder->join($attribute);
-        }
-
-        return $queryBuilder;
     }
 
     public function getDbConnect(string|null $connectName = null): DataBase
@@ -86,7 +82,6 @@ abstract class AbstractModel extends stdClass implements ModelInterface
 
     private function hiddenFields(self|null $model)
     {
-
         if (!$model) {
             return $model;
         }
@@ -110,7 +105,7 @@ abstract class AbstractModel extends stdClass implements ModelInterface
         $filable = $this->getFillable();
 
         foreach ($filable as $field => $type) {
-            if (class_exists($type)) {
+            if (class_exists($type) && $type instanceof TypeInterface) {
                 $this->$field = new $type($this->$field);
             }
         }
@@ -131,7 +126,7 @@ abstract class AbstractModel extends stdClass implements ModelInterface
 
     final public function save(): self|false
     {
-        if ($this->id) {
+        if ($this->id?->get()) {
             return $this->update();
         }
 
@@ -141,30 +136,24 @@ abstract class AbstractModel extends stdClass implements ModelInterface
     public function update(): self|false
     {
         $this->action = 'update';
-        $this->date_update = new DateTime();
+        $this->date_update = new Date();
         $queryBuilder = (new UpdateModel())->table($this->getTableName())->set($this);
-        $obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ONE}(PDO::FETCH_CLASS, static::class);
+        #$obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ONE}(PDO::FETCH_CLASS, static::class);
         
-        return $obj->unsetHidenFields($obj);
+        return false;$obj?->unsetHidenFields($obj)?:false;
     }
 
-    final public function create(): self|false
+    final public function create(): ModelInterface|self|false
     {
         $this->action = 'create';
-        $this->id = $this->setId();
-        $this->date_update = new DateTime();
-        $this->date_create = new DateTime();
+        $this->id = new Uuid();
+        $this->date_update = new Date();
+        $this->date_create = new Date();
         $queryBuilder = (new CreateModel())->table($this->getTableName())->set($this);
-        $obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ALL}(PDO::FETCH_CLASS, static::class);
+        (string)$queryBuilder;
+        #$obj = $this->getDbConnect()->get($queryBuilder)->{GetQueryFindEnum::ALL}(PDO::FETCH_CLASS, static::class);
 
-        return $obj->unsetHidenFields($obj);
-    }
-
-    protected function setId(): string
-    {
-        $str = md5(print_r($this, true) . time() . rand(1000, 10000));
-
-        return preg_replace('~^(\w{8})(\w{4})(\w{4})(\w{4})(\w{12})$~ui', '$1-$2-$3-$4-$5', $str);
+        return false; $obj?->unsetHidenFields($obj)?:false;
     }
 
     final public function sync(): bool

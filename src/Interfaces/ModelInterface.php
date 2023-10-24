@@ -2,6 +2,7 @@
 
 namespace AutoCode\Utils\Interfaces;
 
+use AutoCode\Utils\Common\Model\AbstractModel;
 use PDO;
 
 interface ModelInterface
@@ -37,9 +38,7 @@ interface ModelInterface
 
     public function __toString(): string;
 
-    public function load(): CollectionInterface;
-
-    public function create(): self|null;
+    public function create(): AbstractModel|self|false;
 
     public function getFillable(): array;
 

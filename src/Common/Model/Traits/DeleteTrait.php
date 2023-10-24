@@ -1,10 +1,10 @@
 <?php
 
-namespace AutoCode\Utils\Common\Model\Traits;
+namespace AutoCode\Core\Common\Model\Traits;
 
-use AutoCode\Utils\Common\QueryBuilder\DeleteModel;
-use AutoCode\Utils\Common\QueryBuilder\Types\Date;
-use AutoCode\Utils\Enums\DeleteDriverEnum;
+use AutoCode\Core\Common\QueryBuilder\DeleteModel;
+use AutoCode\Core\Common\QueryBuilder\Types\Date;
+use AutoCode\Core\Enums\DeleteDriverEnum;
 use DateTime;
 
 trait DeleteTrait

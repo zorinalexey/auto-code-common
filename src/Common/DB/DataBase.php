@@ -1,9 +1,9 @@
 <?php
 
-namespace AutoCode\Utils\Common\DB;
+namespace AutoCode\Core\Common\DB;
 
-use AutoCode\Utils\Common\Config\Config;
-use AutoCode\Utils\Interfaces\QueryBuilderInterface;
+use AutoCode\Core\Common\Config\Config;
+use AutoCode\Core\Interfaces\QueryBuilderInterface;
 use PDO;
 use PDOStatement;
 

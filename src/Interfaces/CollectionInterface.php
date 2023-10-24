@@ -1,6 +1,6 @@
 <?php
 
-namespace AutoCode\Utils\Interfaces;
+namespace AutoCode\Core\Interfaces;
 
 use Iterator;
 

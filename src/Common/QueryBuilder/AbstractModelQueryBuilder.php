@@ -1,10 +1,10 @@
 <?php
 
-namespace AutoCode\Utils\Common\QueryBuilder;
+namespace AutoCode\Core\Common\QueryBuilder;
 
-use AutoCode\Utils\Common\Model\AbstractModel;
-use AutoCode\Utils\Interfaces\ModelInterface;
-use AutoCode\Utils\Interfaces\QueryBuilderInterface;
+use AutoCode\Core\Common\Model\AbstractModel;
+use AutoCode\Core\Interfaces\ModelInterface;
+use AutoCode\Core\Interfaces\QueryBuilderInterface;
 
 abstract class AbstractModelQueryBuilder implements QueryBuilderInterface
 {

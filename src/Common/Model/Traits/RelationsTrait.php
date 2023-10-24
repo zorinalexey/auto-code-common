@@ -1,11 +1,11 @@
 <?php
 
-namespace AutoCode\Utils\Common\Model\Traits;
+namespace AutoCode\Core\Common\Model\Traits;
 
-use AutoCode\Utils\Common\Collection;
-use AutoCode\Utils\Enums\GetQueryFindEnum;
-use AutoCode\Utils\Interfaces\CollectionInterface;
-use AutoCode\Utils\Interfaces\ModelInterface;
+use AutoCode\Core\Common\Collection;
+use AutoCode\Core\Enums\GetQueryFindEnum;
+use AutoCode\Core\Interfaces\CollectionInterface;
+use AutoCode\Core\Interfaces\ModelInterface;
 
 trait RelationsTrait
 {

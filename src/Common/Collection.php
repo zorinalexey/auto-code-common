@@ -1,8 +1,8 @@
 <?php
 
-namespace AutoCode\Utils\Common;
+namespace AutoCode\Core\Common;
 
-use AutoCode\Utils\Interfaces\CollectionInterface;
+use AutoCode\Core\Interfaces\CollectionInterface;
 
 final class Collection implements CollectionInterface
 {

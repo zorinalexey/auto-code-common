@@ -1,10 +1,10 @@
 <?php
 
-namespace AutoCode\Utils\Interfaces;
+namespace AutoCode\Core\Interfaces;
 
-use AutoCode\Utils\Common\Stat;
-use AutoCode\Utils\Enums\ChmodEnum;
-use AutoCode\Utils\Enums\FileTypeEnum;
+use AutoCode\Core\Common\Stat;
+use AutoCode\Core\Enums\ChmodEnum;
+use AutoCode\Core\Enums\FileTypeEnum;
 
 interface StorageInterface
 {

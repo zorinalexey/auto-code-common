@@ -1,20 +1,20 @@
 <?php /** @noinspection ALL */
 
-namespace AutoCode\Utils\Common\Model;
+namespace AutoCode\Core\Common\Model;
 
-use AutoCode\Utils\Common\Collection;
-use AutoCode\Utils\Common\DB\DataBase;
-use AutoCode\Utils\Common\Model\Traits\DeleteTrait;
-use AutoCode\Utils\Common\Model\Traits\RelationsTrait;
-use AutoCode\Utils\Common\QueryBuilder\CreateModel;
-use AutoCode\Utils\Common\QueryBuilder\SelectModel;
-use AutoCode\Utils\Common\QueryBuilder\Types\Date;
-use AutoCode\Utils\Common\QueryBuilder\Types\TypeInterface;
-use AutoCode\Utils\Common\QueryBuilder\Types\Uuid;
-use AutoCode\Utils\Common\QueryBuilder\UpdateModel;
-use AutoCode\Utils\Enums\GetQueryFindEnum;
-use AutoCode\Utils\Interfaces\CollectionInterface;
-use AutoCode\Utils\Interfaces\ModelInterface;
+use AutoCode\Core\Common\Collection;
+use AutoCode\Core\Common\DB\DataBase;
+use AutoCode\Core\Common\Model\Traits\DeleteTrait;
+use AutoCode\Core\Common\Model\Traits\RelationsTrait;
+use AutoCode\Core\Common\QueryBuilder\CreateModel;
+use AutoCode\Core\Common\QueryBuilder\SelectModel;
+use AutoCode\Core\Common\QueryBuilder\Types\Date;
+use AutoCode\Core\Common\QueryBuilder\Types\TypeInterface;
+use AutoCode\Core\Common\QueryBuilder\Types\Uuid;
+use AutoCode\Core\Common\QueryBuilder\UpdateModel;
+use AutoCode\Core\Enums\GetQueryFindEnum;
+use AutoCode\Core\Interfaces\CollectionInterface;
+use AutoCode\Core\Interfaces\ModelInterface;
 use PDO;
 use stdClass;
 

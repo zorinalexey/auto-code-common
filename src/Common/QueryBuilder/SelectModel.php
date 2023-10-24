@@ -1,8 +1,8 @@
 <?php
 
-namespace AutoCode\Utils\Common\QueryBuilder;
+namespace AutoCode\Core\Common\QueryBuilder;
 
-use AutoCode\Utils\Interfaces\QueryBuilderInterface;
+use AutoCode\Core\Interfaces\QueryBuilderInterface;
 
 final class SelectModel implements QueryBuilderInterface
 {

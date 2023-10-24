@@ -1,6 +1,6 @@
 <?php
 
-namespace AutoCode\Utils\Common\QueryBuilder;
+namespace AutoCode\Core\Common\QueryBuilder;
 
 final class UpdateModel extends AbstractModelQueryBuilder
 {

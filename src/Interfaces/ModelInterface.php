@@ -1,8 +1,8 @@
 <?php /** @noinspection MissingParameterTypeDeclarationInspection */
 
-namespace AutoCode\Utils\Interfaces;
+namespace AutoCode\Core\Interfaces;
 
-use AutoCode\Utils\Common\Model\AbstractModel;
+use AutoCode\Core\Common\Model\AbstractModel;
 use PDO;
 
 interface ModelInterface

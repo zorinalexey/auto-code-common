@@ -1,12 +1,12 @@
 <?php
 
-namespace AutoCode\Utils\Interfaces;
+namespace AutoCode\Core\Interfaces;
 
-use AutoCode\Utils\Common\QueryBuilder\AbstractModelQueryBuilder;
-use AutoCode\Utils\Common\QueryBuilder\CreateModel;
-use AutoCode\Utils\Common\QueryBuilder\DeleteModel;
-use AutoCode\Utils\Common\QueryBuilder\SelectModel;
-use AutoCode\Utils\Common\QueryBuilder\UpdateModel;
+use AutoCode\Core\Common\QueryBuilder\AbstractModelQueryBuilder;
+use AutoCode\Core\Common\QueryBuilder\CreateModel;
+use AutoCode\Core\Common\QueryBuilder\DeleteModel;
+use AutoCode\Core\Common\QueryBuilder\SelectModel;
+use AutoCode\Core\Common\QueryBuilder\UpdateModel;
 
 interface QueryBuilderInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace AutoCode\Utils\Common\Config;
+namespace AutoCode\Core\Common\Config;
 
-use AutoCode\Utils\Interfaces\ConfigInterface;
-use AutoCode\Utils\Interfaces\FileInterface;
+use AutoCode\Core\Interfaces\ConfigInterface;
+use AutoCode\Core\Interfaces\FileInterface;
 
 if(!defined('ROOT_PATH')){
     define('ROOT_PATH', dirname(__FILE__, 4));

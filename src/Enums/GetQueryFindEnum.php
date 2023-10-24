@@ -1,6 +1,6 @@
 <?php
 
-namespace AutoCode\Utils\Enums;
+namespace AutoCode\Core\Enums;
 
 /**
  * @property  string $name

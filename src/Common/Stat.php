@@ -1,6 +1,6 @@
 <?php
 
-namespace AutoCode\Utils\Common;
+namespace AutoCode\Core\Common;
 
 final class Stat
 {

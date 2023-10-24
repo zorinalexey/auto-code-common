@@ -1,6 +1,6 @@
 <?php
 
-namespace AutoCode\Utils\Common\QueryBuilder\Types;
+namespace AutoCode\Core\Common\QueryBuilder\Types;
 
 final class Uuid implements TypeInterface
 {

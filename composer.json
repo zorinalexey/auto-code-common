@@ -1,0 +1,22 @@
+{
+  "name": "auto-code/interfaces",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "AutoCode\\Utils\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Зорин Алексей",
+      "email": "zorinalexey59292@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.2",
+    "free2one/php-accessor": "~0.4",
+    "ext-pdo": "*"
+  }
+}
